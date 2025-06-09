@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Black Mango';
-  src: url('/assets/fonts/BlackMango-Regular.woff2') format('woff2');
+  src: url('black-mango-regular.ttf') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
