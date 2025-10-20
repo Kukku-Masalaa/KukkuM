@@ -90,7 +90,7 @@
           <div class="p-6">
             <h4 class="text-xl font-semibold mb-2">Garam Masala Powder</h4>
             <p class="text-sm text-gray-600 mb-4">A handcrafted blend of premium spices to elevate your dishes with authentic Indian flavor.</p>
-            <div class="flex space-x-2">
+            <!--<div class="flex space-x-2">
               <a href="https://amzn.in/d/fkg0i8F" target="_blank" class="flex items-center space-x-1 bg-black text-white px-3 py-2 rounded hover:bg-black-10 text-sm">
                 <img src="amazon.png" alt="Amazon" class="w-5 h-5" /> <span>Amazon</span>
               </a>
@@ -99,11 +99,82 @@
            
               <img src="flipkart.png" alt="Flipkart" class="w-5 h-5" /> <span>Flipkart</span>
               </a>
-           -->
+           
               <a href="https://www.meesho.com/s/p/9towc8?utm_source=s_wb" target="_blank" class="flex items-center space-x-1 bg-pink-600 text-white px-3 py-2 rounded hover:bg-pink-700 text-sm">
                 <img src="meesho.png" alt="Meesho" class="w-5 h-5" /> <span>Meesho</span>
               </a>
-            </div>
+            </div>-->
+               <h2>Select Weight</h2>
+        <div class="radio-group">
+        <label><input type="radio" name="weight" value="50gm" onchange="showPlatforms()"> 50 gm </label>
+        <label><input type="radio" name="weight" value="100gm" onchange="showPlatforms()"> 100 gm </label>
+        <label><input type="radio" name="weight" value="250gm" onchange="showPlatforms()"> 250 gm </label>
+    </div>
+    <div id="platformLinks" class="platform-links flex space-x-2">
+        <a id="amazonLink" href="#" target="_blank" class="flex items-center space-x-1 bg-black text-white px-3 py-2 rounded hover:bg-black-10 text-sm" style="display: none;">
+            <img src="amazon.png" alt="Amazon" class="w-5 h-5" onerror="this.src='https://via.placeholder.com/20?text=A';">
+            <span>Amazon</span>
+        </a>
+        <a id="meeshoLink" href="#" target="_blank" class="flex items-center space-x-1 bg-pink-600 text-white px-3 py-2 rounded hover:bg-pink-700 text-sm" style="display: none;">
+            <img src="meesho.png" alt="Meesho" class="w-5 h-5" onerror="this.src='https://via.placeholder.com/20?text=M';">
+            <span>Meesho</span>
+        </a>
+    </div>
+
+    <script>
+        function showPlatforms() {
+            const platformLinks = document.getElementById('platformLinks');
+            const amazonLink = document.getElementById('amazonLink');
+            const meeshoLink = document.getElementById('meeshoLink');
+            const selectedWeight = document.querySelector('input[name="weight"]:checked');
+
+            // Reset display
+            platformLinks.style.display = 'none';
+            amazonLink.style.display = 'none';
+            meeshoLink.style.display = 'none';
+
+            try {
+                if (selectedWeight) {
+                    platformLinks.style.display = 'flex';
+                    const weight = selectedWeight.value;
+
+                    // Set href attributes based on weight using switch
+                    switch (weight) {
+                        case "50gm":
+                            amazonLink.href = "https://amzn.in/d/0Kfi5pN";
+                            meeshoLink.href = "https://www.meesho.com/s/p/9towc8?utm_source=s_wb";
+                            amazonLink.style.display = 'flex';
+                            meeshoLink.style.display = 'flex';
+                            console.log("50gm selected: Amazon URL =", amazonLink.href, "Meesho URL =", meeshoLink.href);
+                            break;
+                        case "100gm":
+                            amazonLink.href = "https://amzn.in/d/c9GERW7";
+                            meeshoLink.href = "https://www.meesho.com/s/p/9tok6q?utm_source=s_wb";
+                            amazonLink.style.display = 'flex';
+                            meeshoLink.style.display = 'flex';
+                            console.log("100gm selected: Amazon URL =", amazonLink.href, "Meesho URL =", meeshoLink.href);
+                            break;
+                        case "250gm":
+                            amazonLink.href = "https://amzn.in/d/0bXrIo8";
+                            meeshoLink.href = "https://www.meesho.com/s/p/8xegaj?utm_source=s_wb";
+                            amazonLink.style.display = 'flex';
+                            meeshoLink.style.display = 'flex';
+                            console.log("250gm selected: Amazon URL =", amazonLink.href, "Meesho URL =", meeshoLink.href);
+                            break;
+                        default:
+                            platformLinks.style.display = 'none';
+                            console.log("No valid weight selected");
+                            break;
+                    }
+                } else {
+                    console.log("No weight selected");
+                }
+            } catch (error) {
+                console.error('Error in showPlatforms:', error);
+            }
+        }
+    </script>
+
           </div>
         </div>
       </div>
