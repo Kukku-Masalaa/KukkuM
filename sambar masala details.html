@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KUKKUMASALAA Sambar Masala product information" />
+  <title>Kukku Masalaa | Sambar Masala</title>
+
+  <style>
+    :root {
+      --brand: #0c4b36;
+      --brand-2: #f1a113;
+      --accent: #6c2ccf;
+      --ink: #18231f;
+      --muted: #66736e;
+      --line: #dfe7e3;
+      --paper: #ffffff;
+      --soft: #f7faf8;
+      --shadow: 0 18px 50px rgba(21, 52, 40, .12);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(241,161,19,.08), transparent 34%),
+        linear-gradient(180deg, #f9fbfa 0%, #eef5f1 100%);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--brand), #176f50);
+      box-shadow: 0 10px 24px rgba(12,75,54,.18);
+    }
+
+    .brand-copy h1 {
+      font-size: 17px;
+      margin: 0;
+      letter-spacing: .4px;
+    }
+
+    .brand-copy p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .language-box {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 8px 10px;
+      box-shadow: 0 8px 20px rgba(20,50,40,.05);
+    }
+
+    .language-box label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    select {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .product-shell {
+      display: grid;
+      grid-template-columns: minmax(310px, .9fr) minmax(0, 1.4fr);
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(12,75,54,.08);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-panel {
+      position: relative;
+      padding: 34px;
+      min-height: 620px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.7), rgba(244,248,246,.92)),
+        radial-gradient(circle at 15% 15%, rgba(241,161,19,.15), transparent 30%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-panel::before,
+    .visual-panel::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .visual-panel::before {
+      width: 230px;
+      height: 230px;
+      background: rgba(12,75,54,.06);
+      top: -80px;
+      left: -90px;
+    }
+
+    .visual-panel::after {
+      width: 190px;
+      height: 190px;
+      background: rgba(241,161,19,.08);
+      bottom: -70px;
+      right: -40px;
+    }
+
+    .pack-frame {
+      width: min(100%, 355px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .pack-frame img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(14, 48, 35, .12);
+      box-shadow: 0 24px 48px rgba(16,54,39,.22);
+    }
+
+    .detail-panel {
+      padding: 40px 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--brand-2);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.02;
+      color: var(--brand);
+      letter-spacing: -1.7px;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 22px 0 26px;
+    }
+
+    .pill {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: #f2f8f4;
+      border: 1px solid #d7e7dc;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 13px;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--brand);
+      letter-spacing: -.7px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #e4ebe7;
+      font-size: 14px;
+    }
+
+    .meta:last-child { border-bottom: 0; }
+
+    .meta .label { color: var(--muted); }
+    .meta .value { font-weight: 700; text-align: right; }
+
+    .section {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: linear-gradient(180deg, #fff, #fbfdfc);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #eef6f1;
+      color: var(--brand);
+      font-size: 17px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--brand);
+    }
+
+    .ingredients {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ingredients li {
+      border: 1px solid #e0e9e4;
+      border-radius: 12px;
+      background: white;
+      padding: 9px 11px;
+      font-size: 13px;
+    }
+
+    .usage {
+      margin: 0;
+      color: #4d5b55;
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin: 18px 0 0;
+      color: #7c8984;
+      font-size: 11px;
+    }
+
+    @media (max-width: 860px) {
+      .product-shell { grid-template-columns: 1fr; }
+      .visual-panel { min-height: auto; padding: 30px; }
+      .pack-frame { width: min(75%, 330px); }
+      .detail-panel { padding: 30px 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 18px, 1180px); padding-top: 14px; }
+      .topbar { align-items: flex-start; }
+      .brand-copy p { display: none; }
+      .language-box label { display: none; }
+      .info-grid { grid-template-columns: 1fr; }
+      .detail-panel { padding: 26px 18px; }
+      .visual-panel { padding: 22px; }
+      .pack-frame { width: min(90%, 310px); }
+    }
+	
+
+    body { transition: background .25s ease, color .25s ease; 
+	}
+    .top-actions { display:flex; align-items:center; gap:9px; }
+    .icon-btn { width:44px; height:44px; border:1px solid var(--line); background:white; color:var(--brand); border-radius:14px; cursor:pointer; font-size:18px; }
+    .hero { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:32px 34px; margin-bottom:18px; background:linear-gradient(135deg,#0c4b36,#17684d); border-radius:28px; color:white; box-shadow:var(--shadow); }
+    .hero-copy { min-width:0; }
+    .hero .eyebrow { color:#f4bf4a; margin-bottom:9px; }
+    .hero .title { color:white; }
+    .hero .subtitle { color:rgba(255,255,255,.78); max-width:680px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .primary-btn,.secondary-btn { min-height:44px; padding:10px 16px; border-radius:12px; border:1px solid transparent; font-weight:800; cursor:pointer; }
+    .primary-btn { background:#f4b333; color:#193528; }
+    .secondary-btn { background:rgba(255,255,255,.1); color:white; border-color:rgba(255,255,255,.28); }
+    .hero-badge { width:100px; height:100px; border:1px solid rgba(255,255,255,.25); border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:rgba(255,255,255,.07); flex:0 0 auto; }
+    .hero-badge strong { font-size:24px; color:#f4b333; }
+    .hero-badge span { font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+    .image-stage { position:relative; width:min(100%,390px); z-index:1; text-align:center; }
+    .image-button { border:0; padding:0; background:transparent; cursor:zoom-in; position:relative; width:100%; }
+    .image-button img { width:100%; max-height:600px; object-fit:contain; border-radius:18px; border:1px solid rgba(14,48,35,.12); box-shadow:0 24px 48px rgba(16,54,39,.22); display:block; }
+    .zoom-label { position:absolute; right:13px; bottom:13px; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.92); color:var(--brand); font-size:25px; box-shadow:0 6px 18px rgba(0,0,0,.12); }
+    .floating-tag { position:absolute; left:-9px; top:16px; z-index:2; background:#f4b333; color:#173a2b; padding:7px 11px; border-radius:0 10px 10px 0; font-size:10px; font-weight:900; letter-spacing:1.4px; box-shadow:0 6px 15px rgba(0,0,0,.1); }
+    .image-hint { margin-top:11px; color:var(--muted); font-size:12px; }
+    .price-card small { display:block; color:var(--muted); margin-top:4px; }
+    .tabs { display:flex; gap:6px; overflow:auto; border-bottom:1px solid var(--line); margin-top:18px; }
+    .tab { border:0; background:transparent; padding:12px 14px; color:var(--muted); font-weight:800; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+    .tab.active { color:var(--brand); border-bottom-color:var(--brand-2); }
+    .tab-panel { display:none; padding-top:18px; }
+    .tab-panel.active { display:block; animation:fadeIn .22s ease; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none} }
+    .section-head { align-items:flex-start; }
+    .section-head h2 { margin:2px 0 3px; }
+    .section-head p { margin:0; color:var(--muted); font-size:12px; }
+    .ingredient {width:100%; border:1px solid #e0e9e4; background:white; border-radius:12px; padding:11px 12px; display:flex; justify-content:space-between; align-items:center; text-align:left; cursor:pointer; color:var(--ink); margin-bottom:8px; min-height:44px; }
+    .ingredient:hover,.ingredient.selected { border-color:#a7c9b6; background:#f4faf6; }
+    .ingredient span { color:var(--brand); font-size:20px;}
+    .ingredient-info { margin-top:10px; min-height:43px; padding:11px 12px; border-radius:11px; background:#f5f8f6; color:var(--muted); font-size:13px; line-height:1.5; }
+    .serving-box { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px; background:#f6f9f7; border-radius:14px; }
+    .serving-box label { font-size:14px; font-weight:700; }
+    .stepper { display:flex; align-items:center; gap:10px; }
+    .stepper button { width:44px; height:44px; border:1px solid var(--line); background:white; border-radius:12px; cursor:pointer; font-size:22px; color:var(--brand); }
+    .stepper output { min-width:25px; text-align:center; font-weight:900; }
+    .recipe-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
+    .recipe-stats div { background:#fffaf0; border:1px solid #f0dfb6; padding:13px; border-radius:13px; display:flex; flex-direction:column; gap:5px; }
+    .recipe-stats span { font-size:11px; color:var(--muted); }
+    .recipe-stats strong { color:var(--brand); font-size:18px; }
+    .usage { margin:12px 0 0; color:#4d5b55; line-height:1.75; font-size:14px; }
+    .steps { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+    .steps li { display:flex; gap:12px; align-items:flex-start; }
+    .steps li > span { width:30px; height:30px; flex:0 0 30px; display:grid; place-items:center; border-radius:50%; background:#eef6f1; color:var(--brand); font-weight:900; }
+    .steps b { font-size:14px; }
+    .steps p { margin:3px 0 0; color:var(--muted); font-size:13px; line-height:1.5; }
+    .trust-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px; }
+    .trust-row div { background:white; border:1px solid var(--line); border-radius:14px; padding:14px; text-align:center; color:var(--brand); font-size:12px; font-weight:800; }
+    .modal { display:none; position:fixed; inset:0; z-index:50; align-items:center; justify-content:center; padding:20px; }
+    .modal.open { display:flex; }
+    .modal-backdrop { position:absolute; inset:0; background:rgba(5,18,13,.76); }
+    .modal-card { position:relative; z-index:1; max-width:760px; width:min(92vw,760px); max-height:90vh; padding:10px; background:white; border-radius:20px; box-shadow:0 30px 90px rgba(0,0,0,.35); }
+    .modal-card img { display:block; width:100%; max-height:82vh; object-fit:contain; border-radius:13px; }
+    .modal-close { position:absolute; top:-13px; right:-13px; width:44px; height:44px; border:0; border-radius:50%; background:white; color:#193a2c; font-size:27px; cursor:pointer; box-shadow:0 7px 18px rgba(0,0,0,.2); }
+    body.modal-open { overflow:hidden; }
+    body.dark { --ink:#edf5f0; --muted:#aabbb3; --line:#30443c; --paper:#17251f; --soft:#15221d; background:#0e1713; }
+    body.dark .topbar, body.dark .card, body.dark .section, body.dark .ingredient, body.dark .trust-row div, body.dark .icon-btn, body.dark .stepper button, body.dark .modal-card { background:#17251f; }
+    body.dark .ingredient:hover, body.dark .ingredient.selected { background:#1d3429; }
+    body.dark .ingredient-info, body.dark .serving-box { background:#1c2b25; }
+    body.dark .recipe-stats div { background:#2d281c; }
+    body.dark .language-box { background:#17251f; }
+    body.dark .language-box select { color:var(--ink); }
+    body.dark .subtitle, body.dark .usage { color:#b5c3bd; }
+
+    @media (max-width:860px) {
+      .hero { padding:26px 22px; }
+      .product-shell { grid-template-columns:1fr; }
+      .visual-panel { min-height:auto; padding:30px; }
+      .detail-panel { padding:30px 24px; }
+    }
+    @media (max-width:560px) {
+      .page { width:calc(100% - 18px); padding-top:14px; }
+      .topbar { align-items:flex-start; }
+      .brand-copy p { display:none; }
+      .language-box label { display:none; }
+      .hero { flex-direction:column; align-items:flex-start; }
+      .hero-badge { width:78px; height:78px; }
+      .hero-badge strong { font-size:19px; }
+      .hero-actions { width:100%; }
+      .primary-btn,.secondary-btn { flex:1; }
+      .info-grid { grid-template-columns:1fr; }
+      .detail-panel { padding:26px 18px; }
+      .visual-panel { padding:22px; }
+      .pack-frame { width:min(90%,310px); }
+      .trust-row { grid-template-columns:1fr; }
+      .recipe-stats { grid-template-columns:1fr; }
+    }
+	
+	/* ================================
+   INGREDIENTS SECTION
+================================ */
+
+.ingredients-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background: #ffffff;
+
+  border: 1px solid #e1ebe7;
+  border-radius: 18px;
+
+  padding: 24px 30px;
+  margin-top: 18px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Vertical divider */
+
+.ingredient-column:first-child {
+  border-right: 1px solid #e5ebe8;
+  padding-right: 35px;
+}
+
+.ingredient-column:last-child {
+  padding-left: 35px;
+}
+
+
+/* Individual ingredient */
+
+.ingredient-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  border: none;
+  background: transparent;
+
+  padding: 9px 5px;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  border-radius: 10px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Hover */
+
+.ingredient-item:hover {
+  background: #f4f8f6;
+  transform: translateX(3px);
+}
+
+
+/* Ingredient icon */
+
+.ingredient-icon {
+  width: 5px;
+  height: 5px;
+
+  min-width: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f2f7f4;
+
+  font-size: 26px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Ingredient name */
+
+.ingredient-name {
+  font-size: 16px;
+
+  font-weight: 500;
+
+  color: #102d3d;
+
+  line-height: 1.4;
+}
+
+
+/* Information box */
+
+.ingredient-info {
+  margin-top: 15px;
+
+  padding: 14px 18px;
+
+  background: #f5f9f7;
+
+  border-left: 4px solid #4d8b6a;
+
+  border-radius: 8px;
+
+  color: #40545d;
+
+  font-size: 14px;
+
+  min-height: 20px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 500px) {
+
+  .ingredients-box {
+    grid-template-columns: 1fr;
+
+    padding: 15px 18px;
+  }
+
+  .ingredient-column:first-child {
+    border-right: none;
+
+    border-bottom: 1px solid #e5ebe8;
+
+    padding-right: 0;
+
+    padding-bottom: 10px;
+  }
+
+  .ingredient-column:last-child {
+    padding-left: 0;
+
+    padding-top: 10px;
+  }
+
+  .ingredient-item {
+    padding: 8px 2px;
+  }
+
+  .ingredient-icon {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    font-size: 22px;
+  }
+
+  .ingredient-name {
+    font-size: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+  <main class="page" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">KM</div>
+        <div class="brand-copy">
+          <h1>Kukku Masalaa</h1>
+          <p data-i18n="brandLine">Authentic South Indian flavour</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle appearance">☾</button>
+        <div class="language-box">
+          <label for="language" data-i18n="translator">Translator</label>
+          <select id="language" aria-label="Choose language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="category">Pure Indian Spices</span>
+        <h2 class="title" data-i18n="productName">Sambar Masala</h2>
+        <p class="subtitle" data-i18n="description">
+          A balanced blend of aromatic spices crafted for rich, comforting and authentic South Indian sambar.
+        </p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="ingredientsBtn" type="button" data-i18n="viewIngredients">View Ingredients</button>
+          <button class="secondary-btn" id="zoomBtn" type="button" data-i18n="viewPack">View Pack</button>
+        </div>
+      </div>
+
+      <div class="hero-badge">
+        <strong>100%</strong>
+        <span data-i18n="natural">Natural</span>
+      </div>
+    </section>
+
+    <section class="product-shell">
+      <aside class="visual-panel">
+        <div class="image-stage">
+          <span class="floating-tag">KUKKU</span>
+          <button class="image-button" id="imageZoom" type="button" aria-label="Open product image">
+            <img src="C:\Users\ABC\Downloads\kukkumasala.jpg" alt="Kukku Masalaa Sambar Masala pack" />
+            <span class="zoom-label">＋</span>
+          </button>
+          <div class="image-hint" data-i18n="clickPack">Click the pack to zoom</div>
+        </div>
+      </aside>
+
+      <article class="detail-panel">
+        <div class="pill-row">
+          <span class="pill" data-i18n="pill1">No Artificial Colours</span>
+          <span class="pill" data-i18n="pill2">No Added Preservatives</span>
+          <span class="pill" data-i18n="pill3">100% Natural</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="card price-card">
+            <h3 data-i18n="mrp">MRP</h3>
+            <div class="price">₹75</div>
+            <small data-i18n="inclusive">Inclusive of applicable taxes</small>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="productDetails">Product Details</h3>
+            <div class="meta"><span class="label" data-i18n="batch">Batch No.</span><span class="value">KM19</span></div>
+            <div class="meta"><span class="label" data-i18n="mfg">Manufacture Date</span><span class="value">19 Sep 2026</span></div>
+            <!--
+            <div class="meta"><span class="label" data-i18n="bestBefore">Use Before</span><span class="value">31 Aug 2027</span></div>
+          </div>-->
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Product information">
+          <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="ingredients" data-i18n="ingredientsTitle">Ingredients</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-tab="usage" data-i18n="howToUse">How to Use</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-tab="recipe" data-i18n="quickRecipe">Quick Recipe</button>
+        </div>
+
+		<section class="tab-panel active" id="ingredients" role="tabpanel">
+
+		  <div class="section-head">
+			<div class="icon">✦</div>
+			<div>
+			  <h2 data-i18n="ingredientsTitle">Ingredients</h2>
+			  <p data-i18n="ingredientHint">
+				Tap an ingredient to learn its role.
+			  </p>
+			</div>
+		  </div>
+
+		  <div class="ingredients-box">
+
+			<!-- LEFT COLUMN -->
+			<div class="ingredient-column">
+
+			  <button class="ingredient-item" type="button"
+				data-info="Onion adds sweetness, aroma and depth to the dish.">
+				<span class="ingredient-icon">🧅</span>
+				<span class="ingredient-name">Onion</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Coconut adds creaminess and mild sweetness.">
+				<span class="ingredient-icon">🥥</span>
+				<span class="ingredient-name">Coconut</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Kashmiri mirch gives colour and mild heat.">
+				<span class="ingredient-icon">🌶️</span>
+				<span class="ingredient-name">Kashmiri mirch</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Red chili adds spicy heat to the dish.">
+				<span class="ingredient-icon">🌶️</span>
+				<span class="ingredient-name">Red chili</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Curry leaves add a fresh and aromatic flavour.">
+				<span class="ingredient-icon">🌿</span>
+				<span class="ingredient-name">Curry Leaves</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Coriander adds a fresh, citrusy aroma.">
+				<span class="ingredient-icon">🌿</span>
+				<span class="ingredient-name">Coriander</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Heeng adds a strong aromatic flavour.">
+				<span class="ingredient-icon">🟡</span>
+				<span class="ingredient-name">Heeng</span>
+			  </button>
+
+			</div>
+
+
+			<!-- RIGHT COLUMN -->
+			<div class="ingredient-column">
+
+			  <button class="ingredient-item" type="button"
+				data-info="Cumin seeds add an earthy and warm flavour.">
+				<span class="ingredient-icon">🟤</span>
+				<span class="ingredient-name">Cumin Seed</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Methi seeds add a slightly bitter and nutty flavour.">
+				<span class="ingredient-icon">🟤</span>
+				<span class="ingredient-name">Methi Seeds</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Ginger adds warmth and freshness.">
+				<span class="ingredient-icon">🫚</span>
+				<span class="ingredient-name">Ginger</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Garlic adds a strong aromatic and savoury flavour.">
+				<span class="ingredient-icon">🧄</span>
+				<span class="ingredient-name">Garlic</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Turmeric adds colour and earthy flavour.">
+				<span class="ingredient-icon">🟡</span>
+				<span class="ingredient-name">Turmeric</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Cloves add a warm and slightly sweet aroma.">
+				<span class="ingredient-icon">🌰</span>
+				<span class="ingredient-name">Clove</span>
+			  </button>
+
+			  <button class="ingredient-item" type="button"
+				data-info="Cardamom adds a sweet and aromatic flavour.">
+				<span class="ingredient-icon">🫛</span>
+				<span class="ingredient-name">Cardamom</span>
+			  </button>
+
+			</div>
+
+		  </div>
+
+		  <!-- Ingredient information -->
+		  <!--
+		  <div class="ingredient-info" id="ingredientInfo" aria-live="polite">
+			Select an ingredient above.
+		  </div>
+          -->
+		</section>
+
+        <section class="tab-panel" id="usage" role="tabpanel">
+          <div class="section-head">
+            <div class="icon">✓</div>
+            <div>
+              <h2 data-i18n="howToUse">How to Use</h2>
+              <p data-i18n="usageHint">Adjust the quantity to your serving size.</p>
+            </div>
+          </div>
+          <div class="serving-box">
+            <label for="servings" data-i18n="servings">Number of servings</label>
+            <div class="stepper">
+              <button id="minus" type="button" aria-label="Decrease servings">−</button>
+              <output id="servingValue">4</output>
+              <button id="plus" type="button" aria-label="Increase servings">+</button>
+            </div>
+          </div>
+          <div class="recipe-stats">
+            <div><span data-i18n="masalaAmount">Suggested masala</span><strong id="masalaAmount">2 tsp</strong></div>
+            <div><span data-i18n="waterAmount">Water</span><strong id="waterAmount">700 ml</strong></div>
+          </div>
+          <p class="usage" data-i18n="usage">
+            Add Sambar Masala while your cooked dal and vegetables are simmering. Mix well, cook for a few minutes, and adjust salt and spice according to taste.
+          </p>
+        </section>
+
+        <section class="tab-panel" id="recipe" role="tabpanel">
+          <div class="section-head">
+            <div class="icon">🍲</div>
+            <div>
+              <h2 data-i18n="quickRecipe">Quick Sambar</h2>
+              <p data-i18n="recipeHint">A simple serving guide.</p>
+            </div>
+          </div>
+          <ol class="steps">
+				<li><div><p data-i18n="step1">1.  Soak toor dal in water before cooking.</p></div></li>
+				<li><div><p data-i18n="step2">2.  Heat 1 tbsp ghee/oil in a pressure cooker and add green chilli and your choice of vegetables.</p></div></li>
+				<li><div><p data-i18n="step3">3.  Sauté the vegetables for about 2 minutes.</p></div></li>
+				<li><div><p data-i18n="step4">4.  Add 2 tbsp sambar masala and mix well.</p></div></li>
+				<li><div><p data-i18n="step5">5.  Add soaked dal, water (4× the quantity of soaked dal), and salt to taste.</p></div></li>
+				<li><div><p data-i18n="step6">6.  Cook until partially done, then pressure cook for 5 whistles.</p></div></li>
+				<li><div><p data-i18n="step7">7.  Once pressure is released, add tamarind pulp and jaggery and mix well.</p></div></li>
+				<li><div><p data-i18n="step8">8.  Heat 2 tbsp ghee/oil, add mustard seeds, dried red chilli, hing and curry leaves, pour over sambar, mix and serve hot.</p></div></li>									
+          </ol>
+        </section>
+      </article>
+    </section>
+
+    <div class="trust-row">
+      <div>🌿 <span data-i18n="trust1">Authentic spices</span></div>
+      <div>✦ <span data-i18n="trust2">Carefully blended</span></div>
+      <div>♡ <span data-i18n="trust3">Made for everyday cooking</span></div>
+    </div>
+
+    <p class="footer-note" data-i18n="footer">
+      Product information shown here is sample content and can be replaced with your final packaging data.
+    </p>
+
+    <div class="modal" id="imageModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Product image preview">
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+        <img src="product.jpg" alt="Kukku Masalaa Sambar Masala pack enlarged" />
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const translations = {
+      en:{brandLine:"Authentic South Indian flavour",translator:"Translator",category:"Pure Indian Spices",productName:"Sambar Masala",description:"A balanced blend of aromatic spices crafted for rich, comforting and authentic South Indian sambar.",viewIngredients:"View Ingredients",viewPack:"View Pack",natural:"Natural",clickPack:"Click the pack to zoom",pill1:"No Artificial Colours",pill2:"No Added Preservatives",pill3:"100% Natural",mrp:"MRP",inclusive:"Inclusive of applicable taxes",productDetails:"Product Details",batch:"Batch No.",mfg:"Manufacture Date",bestBefore:"Use Before",ingredientsTitle:"Ingredients",ingredientHint:"Tap an ingredient to learn its role.",howToUse:"How to Use",usageHint:"Adjust the quantity to your serving size.",servings:"Number of servings",masalaAmount:"Suggested masala",waterAmount:"Water",usage:"Add Sambar Masala while your cooked dal and vegetables are simmering. Mix well, cook for a few minutes, and adjust salt and spice according to taste.",quickRecipe:"Quick Recipe",recipeHint:"A simple serving guide.",step1Title:"Cook dal",step1:"Pressure-cook or boil toor dal until soft.",step2Title:"Add vegetables",step2:"Add your choice of vegetables and simmer until tender.",step3Title:"Add masala",step3:"Stir in 1–2 tsp Kukku Sambar Masala and simmer for a few minutes.",step4Title:"Finish",step4:"Adjust salt, garnish and serve hot.",trust1:"Authentic spices",trust2:"Carefully blended",trust3:"Made for everyday cooking",footer:"Product information shown here is sample content and can be replaced with your final packaging data."},
+      hi:{brandLine:"असली दक्षिण भारतीय स्वाद",translator:"भाषा",category:"शुद्ध भारतीय मसाले",productName:"सांभर मसाला",description:"खुशबूदार मसालों का संतुलित मिश्रण, जो स्वादिष्ट और असली दक्षिण भारतीय सांभर के लिए तैयार किया गया है।",viewIngredients:"सामग्री देखें",viewPack:"पैक देखें",natural:"प्राकृतिक",clickPack:"पैक पर क्लिक करके बड़ा देखें",pill1:"कोई कृत्रिम रंग नहीं",pill2:"कोई अतिरिक्त प्रिज़र्वेटिव नहीं",pill3:"100% प्राकृतिक",mrp:"अधिकतम खुदरा मूल्य",inclusive:"लागू करों सहित",productDetails:"उत्पाद विवरण",batch:"बैच नंबर",mfg:"निर्माण तिथि",bestBefore:"उपयोग की अंतिम तिथि",ingredientsTitle:"सामग्री",ingredientHint:"किसी सामग्री पर टैप करके उसकी भूमिका देखें।",howToUse:"उपयोग कैसे करें",usageHint:"सर्विंग के अनुसार मात्रा बदलें।",servings:"सर्विंग की संख्या",masalaAmount:"सुझाई गई मात्रा",waterAmount:"पानी",usage:"पकी हुई दाल और सब्जियों के उबलते समय सांभर मसाला डालें। अच्छी तरह मिलाएँ, कुछ मिनट पकाएँ और स्वाद के अनुसार नमक व मसाला समायोजित करें।",quickRecipe:"झटपट सांभर",recipeHint:"एक आसान सर्विंग गाइड।",step1Title:"दाल पकाएँ",step1:"तूर दाल को नरम होने तक पकाएँ।",step2Title:"सब्जियाँ डालें",step2:"अपनी पसंद की सब्जियाँ डालकर नरम होने तक पकाएँ।",step3Title:"मसाला डालें",step3:"1–2 चम्मच कुक्कू सांभर मसाला डालकर कुछ मिनट पकाएँ।",step4Title:"पूरा करें",step4:"नमक समायोजित करें, गार्निश करें और गरम परोसें।",trust1:"असली मसाले",trust2:"सावधानी से मिश्रित",trust3:"रोज़ाना खाना बनाने के लिए",footer:"यहाँ दिखाई गई उत्पाद जानकारी नमूना सामग्री है। इसे आपके अंतिम पैकेजिंग डेटा से बदला जा सकता है।"},
+      ta:{brandLine:"உண்மையான தென்னிந்திய சுவை",translator:"மொழி",category:"தூய இந்திய மசாலா",productName:"சாம்பார் மசாலா",description:"சுவையான மற்றும் பாரம்பரிய தென்னிந்திய சாம்பாருக்காக தயாரிக்கப்பட்ட மணமிக்க மசாலா கலவை.",viewIngredients:"பொருட்களைப் பார்க்க",viewPack:"பேக்கைப் பார்க்க",natural:"இயற்கை",clickPack:"பேக்கை பெரிதாகப் பார்க்க கிளிக் செய்யவும்",pill1:"செயற்கை நிறமில்லை",pill2:"சேர்க்கப்பட்ட பாதுகாப்புப் பொருள் இல்லை",pill3:"100% இயற்கை",mrp:"அதிகபட்ச சில்லறை விலை",inclusive:"பொருந்தும் வரிகள் உட்பட",productDetails:"தயாரிப்பு விவரங்கள்",batch:"பேட்ச் எண்",mfg:"உற்பத்தி தேதி",bestBefore:"பயன்படுத்த வேண்டிய தேதி",ingredientsTitle:"பொருட்கள்",ingredientHint:"ஒரு பொருளைத் தட்டி அதன் பங்கை அறியலாம்.",howToUse:"பயன்படுத்தும் முறை",usageHint:"பரிமாறும் அளவுக்கேற்ப மாற்றவும்.",servings:"பரிமாறும் எண்ணிக்கை",masalaAmount:"பரிந்துரைக்கப்பட்ட மசாலா",waterAmount:"தண்ணீர்",usage:"பருப்பு மற்றும் காய்கறிகள் கொதிக்கும் போது சாம்பார் மசாலா சேர்க்கவும். நன்றாக கலந்து சில நிமிடங்கள் வேகவிட்டு சுவைக்கேற்ப உப்பு மற்றும் காரத்தைச் சரிசெய்யவும்.",quickRecipe:"விரைவு சாம்பார்",recipeHint:"எளிய பரிமாறும் வழிகாட்டி.",step1Title:"பருப்பு சமைக்கவும்",step1:"துவரம் பருப்பை மென்மையாகும் வரை சமைக்கவும்.",step2Title:"காய்கறிகள் சேர்க்கவும்",step2:"விருப்பமான காய்கறிகளைச் சேர்த்து மென்மையாகும் வரை வேகவைக்கவும்.",step3Title:"மசாலா சேர்க்கவும்",step3:"1–2 டீஸ்பூன் குக்கூ சாம்பார் மசாலா சேர்த்து சில நிமிடங்கள் வேகவைக்கவும்.",step4Title:"முடிக்கவும்",step4:"உப்பு சரிசெய்து, அலங்கரித்து சூடாக பரிமாறவும்.",trust1:"உண்மையான மசாலா",trust2:"கவனமாக கலக்கப்பட்டது",trust3:"தினசரி சமையலுக்காக",footer:"இங்கு காணப்படும் தகவல்கள் மாதிரி உள்ளடக்கம்; உங்கள் இறுதி பேக்கேஜிங் தகவல்களால் மாற்றலாம்."},
+      te:{brandLine:"అసలైన దక్షిణ భారత రుచి",translator:"భాష",category:"శుద్ధ భారతీయ మసాలాలు",productName:"సాంబార్ మసాలా",description:"రుచికరమైన సంప్రదాయ దక్షిణ భారత సాంబార్ కోసం రూపొందించిన సువాసనగల మసాలాల సమతుల్య మిశ్రమం.",viewIngredients:"పదార్థాలు చూడండి",viewPack:"ప్యాక్ చూడండి",natural:"సహజం",clickPack:"ప్యాక్‌ను పెద్దగా చూడటానికి క్లిక్ చేయండి",pill1:"కృత్రిమ రంగులు లేవు",pill2:"అదనపు ప్రిజర్వేటివ్స్ లేవు",pill3:"100% సహజం",mrp:"గరిష్ట చిల్లర ధర",inclusive:"వర్తించే పన్నులతో సహా",productDetails:"ఉత్పత్తి వివరాలు",batch:"బ్యాచ్ నం.",mfg:"తయారీ తేదీ",bestBefore:"ఈ తేదీకి ముందు వాడండి",ingredientsTitle:"పదార్థాలు",ingredientHint:"పదార్థంపై ట్యాప్ చేసి దాని పాత్ర తెలుసుకోండి.",howToUse:"వాడే విధానం",usageHint:"సర్వింగ్ పరిమాణానికి అనుగుణంగా మార్చండి.",servings:"సర్వింగుల సంఖ్య",masalaAmount:"సూచించిన మసాలా",waterAmount:"నీరు",usage:"పప్పు మరియు కూరగాయలు మరిగేటప్పుడు సాంబార్ మసాలా వేయండి. బాగా కలిపి కొన్ని నిమిషాలు ఉడికించి, రుచికి తగినట్లు ఉప్పు మరియు కారం సర్దుబాటు చేయండి.",quickRecipe:"త్వరిత సాంబార్",recipeHint:"సులభమైన సర్వింగ్ గైడ్.",step1Title:"పప్పు ఉడికించండి",step1:"కందిపప్పును మెత్తగా అయ్యే వరకు ఉడికించండి.",step2Title:"కూరగాయలు వేయండి",step2:"మీకు నచ్చిన కూరగాయలు వేసి మెత్తగా అయ్యే వరకు ఉడికించండి.",step3Title:"మసాలా వేయండి",step3:"1–2 టీ స్పూన్లు కుక్కు సాంబార్ మసాలా వేసి కొన్ని నిమిషాలు ఉడికించండి.",step4Title:"పూర్తి చేయండి",step4:"ఉప్పు సర్దుబాటు చేసి గార్నిష్ చేసి వేడిగా వడ్డించండి.",trust1:"అసలైన మసాలాలు",trust2:"జాగ్రత్తగా కలపబడింది",trust3:"రోజువారీ వంట కోసం",footer:"ఇక్కడ చూపిన సమాచారం నమూనా మాత్రమే; మీ తుది ప్యాకేజింగ్ సమాచారంతో మార్చవచ్చు."}
+    };
+
+    const root = document.getElementById("app");
+    const language = document.getElementById("language");
+    const modal = document.getElementById("imageModal");
+    const servingOutput = document.getElementById("servingValue");
+    let servings = 4;
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.en;
+      root.querySelectorAll("[data-i18n]").forEach(el => {
+        const value = t[el.dataset.i18n];
+        if (value) el.textContent = value;
+      });
+      document.documentElement.lang = lang;
+    }
+
+    language.addEventListener("change", e => setLanguage(e.target.value));
+
+    root.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        root.querySelectorAll(".tab").forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        root.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+      });
+    });
+
+    function updateServings() {
+      servings = Math.max(1, Math.min(12, servings));
+      servingOutput.value = servings;
+      servingOutput.textContent = servings;
+      document.getElementById("masalaAmount").textContent = `${(servings * 0.5).toFixed(servings % 2 ? 1 : 0)} tsp`;
+      document.getElementById("waterAmount").textContent = `${servings * 175} ml`;
+    }
+
+    document.getElementById("minus").addEventListener("click", () => { servings--; updateServings(); });
+    document.getElementById("plus").addEventListener("click", () => { servings++; updateServings(); });
+
+    root.querySelectorAll(".ingredient").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.getElementById("ingredientInfo").textContent = btn.dataset.info;
+        root.querySelectorAll(".ingredient").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      });
+    });
+
+    function openModal() {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+    function closeModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    document.getElementById("imageZoom").addEventListener("click", openModal);
+    document.getElementById("zoomBtn").addEventListener("click", openModal);
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    modal.addEventListener("click", e => { if (e.target.dataset.close) closeModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+    document.getElementById("ingredientsBtn").addEventListener("click", () => {
+      const tab = root.querySelector('[data-tab="ingredients"]');
+      tab.click();
+      document.getElementById("ingredients").scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      document.getElementById("themeBtn").textContent = document.body.classList.contains("dark") ? "☀" : "☾";
+    });
+
+    updateServings();
+  </script>
+</body></body>
+</html>
